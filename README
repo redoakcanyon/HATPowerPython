@@ -1,0 +1,41 @@
+HAT Power Board Installation Instructions
+
+Install the HAT Board
+
+1) Shutdown your Raspi and remove the USB power connector. 
+2) Attach the HAT Power Board to the 40 pin connector.
+3) It is recommended that you install plastic standoff and screws into the four corners of the HAT/Raspberry Pi boards.
+
+Attach Battery and Power to the HAT board
+
+With the HAT oriented with the 40 pin connector on top, there are two white connectors on the right side.  
+1) Plug the USB interconnect cable into the bottom one, and the battery into the top one.  
+2) Plug your USB adapter into the USB interconnect cable (optional, at least until the battery dies.)
+
+Power UP:
+
+Push the red button once.  Your raspi should reboot.
+
+Install the python/shell startup scripts that control the board.
+git clone https://github.com/redoakcanyon/HATPowerPython.git
+sudo install.sh
+
+reboot
+
+push the red button now, and the system should issue a "shutting down now" message and in a few seconds, the power should turn off.
+push the red button again and it should turn on.
+
+There is a fail-safe power off feature in case the raspi has crashed.  
+Normally, when the power is on and you push the button, the Raspi will shut off the power.  
+It can't do this if it has crashed.  In this case, you can push the button a second time and it will kill the power.  
+Hopefully you won't need to do this as this isn't a safe shutdown.
+
+You can see if power is applied to the HAT board and see if the battery is charging with:
+
+sudo python chargeStatus.py
+
+The power monitor daemon will update /var/battery/level with the currently remaining % battery left. 
+When the % gets to 0, the system will automatically and cleanly shut down. 
+
+If you want some other process to monitor the battery level, be careful about reading this file. 
+Sometimes there are timing issues with the concurrent read/write file accesses. 

@@ -1,0 +1,36 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          killPower
+# Required-Start:    
+# Required-Stop: halt
+# Default-Start:    2 3 4 5 
+# Default-Stop:      0 1 6
+# x-Stop-Before: halt
+# x-Stop-After: umountroot
+# Short-Description: kill the raspi power 
+# Description:       kills power by toggling the gpio pin
+### END INIT INFO
+
+
+
+
+case "$1" in
+  start)
+	echo -n "Start nothing..."
+	;;
+  stop)
+	echo -n "Killing Power on shutdown..."
+	/usr/bin/logger "killing power with KillPowerAp"
+	/usr/bin/python /etc/init.d/killPowerNow.py 2>&1 | /usr/bin/logger
+	/usr/bin/logger "python exit status $?"
+	;;
+  restart)
+	echo -n "Restarting nothing..."
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
+
