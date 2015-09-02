@@ -18,6 +18,7 @@ Push the red button once.  Your raspi should reboot.
 
 Install the python/shell startup scripts that control the board.
 git clone https://github.com/redoakcanyon/HATPowerPython.git
+cd HATPowerPython
 sudo install.sh
 
 reboot
