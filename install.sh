@@ -14,6 +14,6 @@ sudo update-rc.d monitorPB default
 
 
 # The python scripts need the wiringpi2 class.  Installe it as in (from http://raspi.tv/how-to-install-wiringpi2-for-python-on-the-raspberry-pi):
-
-sudo apt-get install python-dev python-pip (takes a while)
+# installing python-pip takes a while
+sudo apt-get install python-dev python-pip 
 sudo pip install wiringpi2
